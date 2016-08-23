@@ -1,0 +1,4 @@
+主意事项：
+1：在同一个机器部署多个实例，需要修改application.yaml的端口server.port，默认是8711,防止冲突。
+2：如果对sz和sh分开部署，则需要修改application.yaml的dataSource对应的sh和sz的行情文件路径
+3:如果对sz和sh分开部署，则需要修改zkmonitor.properties文件的monitor_namespace属性使其不一样

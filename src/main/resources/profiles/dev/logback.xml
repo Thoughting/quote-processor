@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration scan="false">
+  <!-- 配置项目名称 -->
+  <property name="APP" value="quote-processor"/>
+  	<property name="CONSOLE_LOG_PATTERN" value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n%wex"/>
+  <!-- 日志路径 -->
+  <property name="LOG_HOME" value="../logs/${APP}"/>
+  
+  	<conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
+	<conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter" />
+  
+  <!-- 控制台 -->
+  <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>${CONSOLE_LOG_PATTERN}</pattern>
+		</encoder>
+	</appender>
+	
+  <!-- 打印正常的日志输出 -->
+  <appender name="QUOTE_DETAIL" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${LOG_HOME}/${APP}_detail.log</File>
+		<encoder>
+			<pattern>%d{yy-MM-dd.HH:mm:ss.SSS} [%-5t] %-5p %-5c{0} - DETAIL － %m%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_HOME}/${APP}_info.log.%d{yyyyMMdd}.%i%d{HH}</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>50MB</maxFileSize> 
+            </timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		
+		<!-- 只打印INFO日志 -->
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">  
+            <level>INFO</level>  
+            <onMatch>ACCEPT</onMatch>  
+            <onMismatch>DENY</onMismatch>  
+        </filter>
+  </appender>
+  
+  <!-- 打印状态的日志输出 -->
+  <appender name="QUOTE_STATUS" class="ch.qos.logback.core.rolling.RollingFileAppender" additivity="false">
+    <File>${LOG_HOME}/${APP}_status.log</File>
+    <encoder>
+      <pattern>%d{yy-MM-dd.HH:mm:ss.SSS} [%-5t] %-5p %-5c{0} %X{ServiceId} - STATUS － %m%n</pattern>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${LOG_HOME}/${APP}_status.log.%d{yyyyMMdd}</fileNamePattern>
+    </rollingPolicy>
+    
+    <!-- 只打印WARN日志 -->
+    <filter class="ch.qos.logback.classic.filter.LevelFilter">  
+            <level>WARN</level>  
+            <onMatch>ACCEPT</onMatch>  
+            <onMismatch>DENY</onMismatch>  
+    </filter>
+  </appender>
+  
+  <!-- 打印错误的日志输出 -->
+  <appender name="QUOTE_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender" additivity="false">
+    <File>${LOG_HOME}/${APP}_error.log</File>
+    <encoder>
+      <pattern>%d{yy-MM-dd.HH:mm:ss.SSS} [%-5t] %-5p %-5c{0} %X{ServiceId} - ERROR － %m%n</pattern>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${LOG_HOME}/${APP}_error.log.%d{yyyyMMdd}</fileNamePattern>
+    </rollingPolicy>
+    
+    <!-- 只打ERROR日志 -->
+    <filter class="ch.qos.logback.classic.filter.LevelFilter">  
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>  
+            <onMismatch>DENY</onMismatch>  
+    </filter>
+  </appender>
+  
+  <!-- 第三方jar的打印信息 -->
+    <logger name="org" level="INFO"/>
+    <logger name="org.apache.curator.framework" level="INFO"/>
+     <logger name="org.springframework" level="INFO"/>
+   
+	<logger name="com.baidu.stock" additivity="true" >
+ 	 	<level value="INFO" />  
+        <appender-ref ref="CONSOLE"/>
+  </logger>
+</configuration>

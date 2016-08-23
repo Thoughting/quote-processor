@@ -1,0 +1,58 @@
+#\u503c\u548c'\uff1a'\u4fdd\u6301\u4e00\u4e2a\u7a7a\u683c
+#\u5bf9\u5916\u66b4\u6f0f\u7684\u76d1\u63a7http\u7aef\u53e3
+server.port: 8711
+application:
+      schedule:
+           market_initMaterial_cronExpression: '0 30 8 * * ?'
+           market_notopen_cronExpression: '0 01 0 * * ?'
+           market_auction_cronExpression: '0 15 9 * * ?'
+           market_amTransaction_cronExpression: '0 30 9 * * ?'
+           market_lunchBreak_cronExpression: '0 30 11 * * ?'
+           market_pmTransaction_cronExpression: '0 0 13 * * ?'
+           market_closed_cronExpression: '0 04 15 * * ?'
+           worker_start_cronExpression: '0 58 8 * * ?'
+           worker_start_time: '8:58'
+           worker_stop_cronExpression: '0 10 15 * * ?'
+           worker_stop_time: '15:10'
+           worker_fetch_IntervalMillis: 500
+           service_clean_cronExpression: '0 15 15 * * ?'
+#\u884c\u60c5\u4e1a\u52a1\u76f8\u5173\u53c2\u6570\u914d\u7f6e 
+hqRunTimeConfig:
+       dataSource:
+            lst:
+              - exchange: sz
+                file_1: /home/ssd/quote/quote_source_release/data_1/dbf/sjshq.dbf
+                file_2: /home/ssd/quote/quote_source_release/data_1/dbf/sjshq.dbf
+              - exchange: sh
+                file_1: /home/ssd/quote/quote_source_release/data_1/fast/mktdt00.txt
+                file_2: /home/ssd/quote/quote_source_release/data_1/fast/mktdt00.txt
+#\u884c\u60c5\u65f6\u95f4\u53c2\u6570
+       marketTime:
+            notopenedTime: '0:01'
+            exchageInitTime: '9:00'
+            auctionTime: '9:15'
+            transactionAMTime: '9:30'
+            transactionPMTime: '13:00'
+            lunchbreakTime: '11:30'
+            closedTime: '15:00'
+            stopSendFullHQTime: '15:04'
+            closedAuctionTime: '14:57'
+       activeMQConfig:
+            brokerUrl: failover:(tcp://10.46.219.23:8261,tcp://10.46.219.43:8261,tcp://10.46.219.43:8262)?randomize=false&useExponentialBackOff=true&maxReconnectAttempts=-1&initialReconnectDelay=100&maxReconnectDelay=3000&jms.prefetchPolicy.all=100&jms.dispatchAsync=true&jms.optimizeAcknowledge=false&jms.optimizeAcknowledgeTimeOut=500&jms.redeliveryPolicy.maximumRedeliveries=6&jms.exclusiveConsumer=true
+            userName: 
+            password: 
+            topic: true
+            persistent: true
+            transacted: false
+            timetolive: 1800000
+            maxConnection: 120
+            snapshotDestination: VirtualTopic.quotes
+            notifyDestination: VirtualTopic.codes
+            materialDestination: quotes_basic
+       baseConfig:
+           sendFullTimeMillis: 30000
+           dataExceptionTimeSecond: 30
+           materialURL: http://10.46.219.23:8916/material
+           traceStockSet:
+                  - sz_131800
+                  - sh_000001

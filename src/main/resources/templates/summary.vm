@@ -1,0 +1,27 @@
+<html lang="cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="refresh" content="15">
+</head>
+<body>
+    <a href="/processor">quote-processor</a>&nbsp;
+	<a href="/metrics">metrics</a>&nbsp;
+	<a href="/health">health</a>&nbsp;
+	<a href="/env">env</a>&nbsp;
+	<a href="/dump">dump</a>&nbsp;
+	<a href="/trace">trace</a>&nbsp;
+	<a href="/beans">beans</a>&nbsp;
+	<a href="/mappings">mappings</a>&nbsp;
+
+<br/><br/><br/>memoryCache query£º(http://localhost:8711/getFinacialInfoCache?key=sz_000158) <br/>
+        /getFinacialInfoCache?key=exchange_stockCode <br/>
+        /getAssistDataCache?key=exchange_stockCode&field==field <br/>
+        /getHQSnapShotCache?key=exchange_stockCode <br/>
+        /getRiseFallCache?key=exchange_stockCode&exchange=exchange <br/>
+        /getStockStatusCache?key=exchange_stockCode <br/>
+        /getLastPointCache?key=exchange_stockCode <br/>
+        /getLastPointCache?key=exchange_stockCode <br/>
+        /getHolidayset <br/>
+
+</body>
+</html>

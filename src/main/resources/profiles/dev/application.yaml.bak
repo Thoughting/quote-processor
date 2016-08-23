@@ -1,0 +1,65 @@
+#值和'：'保持一个空格
+spring.view.prefix: /WEB-INF/jsp/
+spring.view.suffix: .jsp
+#对外暴漏的监控http端口,默认8717
+server.port: 8717
+application:
+      schedule:
+           #8:35   
+           market_initMaterial_cronExpression: 0 35 8 * * ?
+           #0:01   
+           market_open_cronExpression: 0 1 0 * * ?
+#9:15   
+           market_auction_cronExpression: 0 15 9 * * ?
+#9:30   
+           market_amTransaction_cronExpression: 0 30 9 * * ?
+#11:30  
+           market_lunchBreak_cronExpression: 0 15 11 * * ?
+#13:00  
+           market_pmTransaction_cronExpression: 0 0 13 * * ?
+#15:04  
+           market_closed_cronExpression: 0 04 15 * * ?
+           #9:00   
+           worker_start_cronExpression: 0 59 8 * * ?
+           worker_start_time: '8:59'
+           #15:10
+           worker_stop_cronExpression: 0 10 15 * * ?
+           worker_stop_time: '15:10'
+           worker_fetch_IntervalMillis: 3000
+#行情业务相关参数配置 
+hqRunTimeConfig:
+       dataSource:
+            #exchange: sh
+            #dbf: D:/dbf/show2003.dbf1
+            #fast: D:/dbf/mktdt00.txt1
+            lst:
+              - exchange: sh
+                file_1: 'D:/dbf/mktdt00.txt'
+                file_2: 'D:/dbf/mktdt00.txt'
+                file_3: 'D:/dbf/show2003.dbf'
+              - exchange: sz
+                file_1: 'D:/dbf/sjshq.dbf'
+                file_2: 'D:/dbf/sjshq.dbf'
+                file_3: 'D:/dbf/sjshq.dbf'
+#行情时间参数
+       marketTime:
+            notopenedTime: '0:01'
+            exchageInitTime: '9:00'
+            auctionTime: '9:15'
+            transactionAMTime: '9:30'
+            transactionPMTime: '13:00'
+            lunchbreakTime: '11:30'
+            closedTime: '15:00'
+       activeMQConfig:
+            url: 1
+            topic: 1
+            name: 1
+            pwd: 1
+       baseConfig:
+           sendFullTimeMillis: 35000
+           dataExceptionTimeMillis: 30000
+           exchangeHolidayPath: /ExchangeHolidays/Exchange_Holidays.txt
+           isSHUseFast: false
+           traceStockSet:
+                  - sz000002
+                  - sh000001

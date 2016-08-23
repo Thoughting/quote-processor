@@ -1,0 +1,93 @@
+<ehcache updateCheck="false" dynamicConfig="false">
+
+	<diskStore path="java.io.tmpdir" />
+
+	<cacheManagerEventListenerFactory
+		class="" properties="" />
+
+	<!--行情快照缓存 周期10个小时 -->
+	<cache name="hqSnapShot_cache" maxElementsInMemory="10000"
+		timeToLiveSeconds="36000" eternal="false" memoryStoreEvictionPolicy="LRU"
+		overflowToDisk="false">
+		<cacheEventListenerFactory
+			class="com.baidu.stock.process.cache.mannage.ProcessorCacheEventListenerFactory" />
+	</cache>
+
+	<!-- 财务信息缓存 周期10个小时 -->
+	<cache name="finacialInfo_cache" maxElementsInMemory="10000"
+		timeToLiveSeconds="36000" eternal="false" memoryStoreEvictionPolicy="LRU"
+		overflowToDisk="false">
+		<cacheEventListenerFactory
+			class="com.baidu.stock.process.cache.mannage.ProcessorCacheEventListenerFactory" />
+	</cache>
+
+	<!--涨跌状态记录缓存 周期10个小时 -->
+	<cache name="riseFall_sh_cache" maxElementsInMemory="10000"
+		timeToLiveSeconds="36000" eternal="false" memoryStoreEvictionPolicy="LRU"
+		overflowToDisk="false">
+		<cacheEventListenerFactory
+			class="com.baidu.stock.process.cache.mannage.ProcessorCacheEventListenerFactory" />
+	</cache>
+
+	<cache name="riseFall_sz_cache" maxElementsInMemory="10000"
+		timeToLiveSeconds="36000" eternal="false" memoryStoreEvictionPolicy="LRU"
+		overflowToDisk="false">
+		<cacheEventListenerFactory
+			class="com.baidu.stock.process.cache.mannage.ProcessorCacheEventListenerFactory" />
+	</cache>
+
+	<!--5日平均成交量 周期10个小时 -->
+	<cache name="assist_cache" maxElementsInMemory="10000"
+		timeToLiveSeconds="36000" eternal="false" memoryStoreEvictionPolicy="LRU"
+		overflowToDisk="false">
+		<cacheEventListenerFactory
+			class="com.baidu.stock.process.cache.mannage.ProcessorCacheEventListenerFactory" />
+	</cache>
+	<!-- 买一卖一缓存 -->
+	<cache name="askbid_cache" maxElementsInMemory="10000"
+		timeToLiveSeconds="36000" eternal="false" memoryStoreEvictionPolicy="LRU"
+		overflowToDisk="false">
+		<cacheEventListenerFactory
+			class="com.baidu.stock.process.cache.mannage.ProcessorCacheEventListenerFactory" />
+	</cache>
+	<!-- 内外盘数据 -->
+	<cache name="innerout_cache" maxElementsInMemory="10000"
+		timeToLiveSeconds="36000" eternal="false" memoryStoreEvictionPolicy="LRU"
+		overflowToDisk="false">
+		<cacheEventListenerFactory
+			class="com.baidu.stock.process.cache.mannage.ProcessorCacheEventListenerFactory" />
+	</cache>
+
+	<!--上笔行情缓存 周期10个小时 -->
+	<cache name="lastPoint_cache" maxElementsInMemory="10000"
+		timeToLiveSeconds="36000" eternal="false" memoryStoreEvictionPolicy="LRU"
+		overflowToDisk="false">
+		<cacheEventListenerFactory
+			class="com.baidu.stock.process.cache.mannage.ProcessorCacheEventListenerFactory" />
+	</cache>
+
+	<!--股票状态 周期10个小时 -->
+	<cache name="stockStatus_cache" maxElementsInMemory="10000"
+		timeToLiveSeconds="36000" eternal="false" memoryStoreEvictionPolicy="LRU"
+		overflowToDisk="false">
+		<cacheEventListenerFactory
+			class="com.baidu.stock.process.cache.mannage.ProcessorCacheEventListenerFactory" />
+	</cache>
+
+	<!--资金流向 周期10个小时 -->
+	<cache name="bigfunds_cache" maxElementsInMemory="10000"
+		timeToLiveSeconds="36000" eternal="false" memoryStoreEvictionPolicy="LRU"
+		overflowToDisk="false">
+		<cacheEventListenerFactory
+			class="com.baidu.stock.process.cache.mannage.ProcessorCacheEventListenerFactory" />
+	</cache>
+
+	<!--成份股 周期10个小时 -->
+	<cache name="indexBag_cache" maxElementsInMemory="10000"
+		timeToLiveSeconds="36000" eternal="false" memoryStoreEvictionPolicy="LRU"
+		overflowToDisk="false">
+		<cacheEventListenerFactory
+			class="com.baidu.stock.process.cache.mannage.ProcessorCacheEventListenerFactory" />
+	</cache>
+
+</ehcache>
